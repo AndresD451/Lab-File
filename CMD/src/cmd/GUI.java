@@ -4,9 +4,6 @@ import cmd.Clases.Comandos;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * GUI - Ventana principal de la consola estilo CMD.
- */
 public class GUI extends JFrame {
 
     private JTextArea  areaTexto;
@@ -22,7 +19,6 @@ public class GUI extends JFrame {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBackground(Color.BLACK);
 
-        // Area donde se muestra la salida
         areaTexto = new JTextArea();
         areaTexto.setBackground(Color.BLACK);
         areaTexto.setForeground(new Color(200, 200, 200));
@@ -34,7 +30,6 @@ public class GUI extends JFrame {
         scroll.getViewport().setBackground(Color.BLACK);
         scroll.setBorder(null);
 
-        // Campo donde el usuario escribe
         campoInput = new JTextField();
         campoInput.setBackground(Color.BLACK);
         campoInput.setForeground(new Color(200, 200, 200));

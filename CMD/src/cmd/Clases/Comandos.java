@@ -5,10 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JTextArea;
 
-/**
- * Comandos - Logica de todos los comandos de la consola.
- * Recibe el JTextArea del GUI para escribir la salida.
- */
 public class Comandos {
 
     private final JTextArea area;
@@ -28,7 +24,6 @@ public class Comandos {
         imprimirPrompt();
     }
 
-    // Metodo principal llamado desde GUI al presionar Enter
     public void procesarComando(String input) {
 
         if (modoEscritura) {
@@ -69,19 +64,17 @@ public class Comandos {
         }
     }
 
-    // Escribe texto con salto de linea
     private void imprimir(String texto) {
         area.append(texto + "\n");
         area.setCaretPosition(area.getDocument().getLength());
     }
 
-    // Imprime el prompt con la ruta real del sistema
+    
     public void imprimirPrompt() {
         area.append(directorioActual.getAbsolutePath() + ">");
         area.setCaretPosition(area.getDocument().getLength());
     }
 
-    // Mkdir <nombre> - Crea carpeta real en el sistema
     private void cmdMkdir(String nombre) {
         if (nombre.isEmpty()) {
             imprimir("Uso: Mkdir <nombre>");
@@ -95,7 +88,6 @@ public class Comandos {
         }
     }
 
-    // Mfile <nombre.ext> - Crea archivo real en el sistema
     private void cmdMfile(String nombre) {
         if (nombre.isEmpty()) {
             imprimir("Uso: Mfile <nombre.ext>");
@@ -113,7 +105,6 @@ public class Comandos {
         }
     }
 
-    // Rm <nombre> - Elimina archivo o carpeta real del sistema
     private void cmdRm(String nombre) {
         if (nombre.isEmpty()) {
             imprimir("Uso: Rm <nombre>");
@@ -131,7 +122,6 @@ public class Comandos {
         }
     }
 
-    // Borra recursivamente si es directorio
     private boolean eliminarRecursivo(File archivo) {
         if (archivo.isDirectory()) {
             File[] hijos = archivo.listFiles();
@@ -144,7 +134,6 @@ public class Comandos {
         return archivo.delete();
     }
 
-    // Cd <nombre> - Entra a un subdirectorio real
     private void cmdCd(String nombre) {
         if (nombre.isEmpty()) {
             imprimir("Uso: Cd <nombre>");
@@ -158,7 +147,6 @@ public class Comandos {
         }
     }
 
-    // <...> - Sube al directorio padre
     private void cmdBack() {
         File padre = directorioActual.getParentFile();
         if (padre != null) {
@@ -168,7 +156,6 @@ public class Comandos {
         }
     }
 
-    // Dir - Lista el contenido real del directorio actual
     private void cmdDir() {
         File[] entradas = directorioActual.listFiles();
         if (entradas == null || entradas.length == 0) {
@@ -183,19 +170,17 @@ public class Comandos {
         imprimir("");
     }
 
-    // Date - Fecha real del sistema
     private void cmdDate() {
         String fecha = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
         imprimir("Fecha actual: " + fecha);
     }
 
-    // Time - Hora real del sistema
+    
     private void cmdTime() {
         String hora = new SimpleDateFormat("HH:mm:ss").format(new Date());
         imprimir("Hora actual: " + hora);
     }
 
-    // Wr <archivo.ext> - Inicia escritura real en archivo con FileWriter
     private void cmdWr(String nombre) {
         if (nombre.isEmpty()) {
             imprimir("Uso: Wr <archivo.ext>");
@@ -212,7 +197,6 @@ public class Comandos {
         imprimir("(Escriba EXIT en mayuscula para terminar)");
     }
 
-    // Acumula lineas en buffer hasta recibir EXIT
     private void manejarModoEscritura(String linea) {
         area.append(linea + "\n");
         area.setCaretPosition(area.getDocument().getLength());
@@ -228,7 +212,6 @@ public class Comandos {
         }
     }
 
-    // Guarda el buffer en el archivo usando FileWriter
     private void guardarBuffer() {
         File objetivo = new File(directorioActual, archivoEscritura);
         try (FileWriter fw = new FileWriter(objetivo, true)) {
@@ -239,7 +222,6 @@ public class Comandos {
         }
     }
 
-    // Rd <archivo.ext> - Lee archivo real con FileReader y muestra contenido
     private void cmdRd(String nombre) {
         if (nombre.isEmpty()) {
             imprimir("Uso: Rd <archivo.ext>");
@@ -265,13 +247,11 @@ public class Comandos {
         }
     }
 
-    // Cls - Limpia la pantalla
     private void cmdCls() {
         area.setText("");
         imprimirPrompt();
     }
 
-    // Help - Lista todos los comandos
     private void cmdHelp() {
         imprimir("Comandos disponibles:");
         imprimir("  Mkdir <nombre>       - Crear nueva carpeta");

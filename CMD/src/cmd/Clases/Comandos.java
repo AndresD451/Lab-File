@@ -10,12 +10,12 @@ public class Comandos {
     private final JTextArea area;
     private File directorioActual;
 
-    private boolean             modoEscritura    = false;
-    private String              archivoEscritura = null;
+    private boolean modoEscritura = false;
+    private String archivoEscritura = null;
     private final StringBuilder bufferEscritura  = new StringBuilder();
 
     public Comandos(JTextArea area) {
-        this.area             = area;
+        this.area = area;
         this.directorioActual = new File(System.getProperty("user.home"));
 
         imprimir("Microsoft Windows [Version 10.0.22621.521]");
@@ -243,3 +243,4 @@ public class Comandos {
             imprimir("Error al leer: " + e.getMessage());
         }
     }
+}

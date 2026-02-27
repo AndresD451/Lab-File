@@ -52,7 +52,5 @@ public class GUI extends JFrame {
         campoInput.requestFocus();
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(GUI::new);
-    }
+
 }

@@ -7,7 +7,7 @@ import java.awt.*;
 public class GUI extends JFrame {
 
     private JTextArea  areaTexto;
-    private JTextField campoInput;
+   
     private Comandos   comandos;
 
     public GUI() {
@@ -23,33 +23,48 @@ public class GUI extends JFrame {
         areaTexto.setBackground(Color.BLACK);
         areaTexto.setForeground(new Color(200, 200, 200));
         areaTexto.setFont(new Font("Consolas", Font.PLAIN, 14));
-        areaTexto.setEditable(false);
+        areaTexto.setEditable(true);
         areaTexto.setLineWrap(true);
 
+    areaTexto.addKeyListener(new java.awt.event.KeyAdapter() {
+    @Override
+    public void keyPressed(java.awt.event.KeyEvent e) {
+        if (e.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            e.consume();
+
+            String texto = areaTexto.getText();
+            String[] lineas = texto.split("\n");
+            String ultimaLinea = lineas[lineas.length - 1];
+
+            String prompt = "C:\\Users\\user>";
+
+            String comando = ultimaLinea.replace(prompt, "").trim();
+
+            areaTexto.append("\n");
+
+            comandos.procesarComando(comando);
+
+            areaTexto.append("C:\\Users\\user>");
+        }
+    }
+});
+        
+        
         JScrollPane scroll = new JScrollPane(areaTexto);
         scroll.getViewport().setBackground(Color.BLACK);
         scroll.setBorder(null);
 
-        campoInput = new JTextField();
-        campoInput.setBackground(Color.BLACK);
-        campoInput.setForeground(new Color(200, 200, 200));
-        campoInput.setCaretColor(Color.WHITE);
-        campoInput.setFont(new Font("Consolas", Font.PLAIN, 14));
-        campoInput.setBorder(BorderFactory.createEmptyBorder(4, 8, 4, 8));
+
 
         comandos = new Comandos(areaTexto);
 
-        campoInput.addActionListener(e -> {
-            String input = campoInput.getText().trim();
-            campoInput.setText("");
-            comandos.procesarComando(input);
-        });
+
 
         panel.add(scroll, BorderLayout.CENTER);
-        panel.add(campoInput, BorderLayout.SOUTH);
+      
         setContentPane(panel);
         setVisible(true);
-        campoInput.requestFocus();
+        
     }
 
 

@@ -10,7 +10,6 @@ public class Comandos {
     private final JTextArea area;
     private File directorioActual;
 
-    // Estado modo escritura (Wr)
     private boolean             modoEscritura    = false;
     private String              archivoEscritura = null;
     private final StringBuilder bufferEscritura  = new StringBuilder();
@@ -43,17 +42,17 @@ public class Comandos {
         String   cmd    = partes[0];
         String   arg    = (partes.length > 1) ? partes[1].trim() : "";
 
-        switch (cmd.toLowerCase()) {
-            case "mkdir" -> cmdMkdir(arg);
-            case "mfile" -> cmdMfile(arg);
-            case "rm"    -> cmdRm(arg);
-            case "cd"    -> cmdCd(arg);
+        switch (cmd) {
+            case "Mkdir" -> cmdMkdir(arg);
+            case "Mfile" -> cmdMfile(arg);
+            case "Rm"    -> cmdRm(arg);
+            case "Cd"    -> cmdCd(arg);
             case "<...>" -> cmdBack();
-            case "dir"   -> cmdDir();
-            case "date"  -> cmdDate();
-            case "time"  -> cmdTime();
-            case "wr"    -> cmdWr(arg);
-            case "rd"    -> cmdRd(arg);
+            case "Dir"   -> cmdDir();
+            case "Date"  -> cmdDate();
+            case "Time"  -> cmdTime();
+            case "Wr"    -> cmdWr(arg);
+            case "Rd"    -> cmdRd(arg);
             case "cls"   -> cmdCls();
             case "help"  -> cmdHelp();
             default      -> imprimir("'" + cmd + "' no se reconoce como un comando interno.");

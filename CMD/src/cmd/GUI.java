@@ -37,7 +37,6 @@ public class GUI extends JFrame {
         campoInput.setFont(new Font("Consolas", Font.PLAIN, 14));
         campoInput.setBorder(BorderFactory.createEmptyBorder(4, 8, 4, 8));
 
-        // Conectar con la clase Comandos
         comandos = new Comandos(areaTexto);
 
         campoInput.addActionListener(e -> {

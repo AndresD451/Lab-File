@@ -53,8 +53,6 @@ public class Comandos {
             case "Time"  -> cmdTime();
             case "Wr"    -> cmdWr(arg);
             case "Rd"    -> cmdRd(arg);
-            case "cls"   -> cmdCls();
-            case "help"  -> cmdHelp();
             default      -> imprimir("'" + cmd + "' no se reconoce como un comando interno.");
         }
 
@@ -245,25 +243,3 @@ public class Comandos {
             imprimir("Error al leer: " + e.getMessage());
         }
     }
-
-    private void cmdCls() {
-        area.setText("");
-        imprimirPrompt();
-    }
-
-    private void cmdHelp() {
-        imprimir("Comandos disponibles:");
-        imprimir("  Mkdir <nombre>       - Crear nueva carpeta");
-        imprimir("  Mfile <nombre.ext>   - Crear nuevo archivo");
-        imprimir("  Rm <nombre>          - Eliminar carpeta o archivo");
-        imprimir("  Cd <nombre>          - Cambiar de directorio");
-        imprimir("  <...>                - Regresar al directorio padre");
-        imprimir("  Dir                  - Listar contenido del directorio");
-        imprimir("  Date                 - Ver fecha actual");
-        imprimir("  Time                 - Ver hora actual");
-        imprimir("  Wr <archivo.ext>     - Escribir en archivo (EXIT para terminar)");
-        imprimir("  Rd <archivo.ext>     - Leer contenido de archivo");
-        imprimir("  Cls                  - Limpiar pantalla");
-        imprimir("  Help                 - Mostrar esta ayuda");
-    }
-}

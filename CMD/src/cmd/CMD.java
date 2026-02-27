@@ -14,7 +14,7 @@ public class CMD {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        GUI ventana = new GUI();
+     GUI java = new GUI();
         
     }
     
